@@ -108,7 +108,7 @@ merge_only() {
   repos="$(grep "remote=\"$REMOTE\"" $ROM_PATH/.repo/manifests/$XML_PATH  | awk '{print $2}' | awk -F '"' '{print $2}')"
 
   for REPO in $repos; do
-    if [[ $blacklist =~ $REPO || $merge_rebase_list =~ $REPO ]]; then
+    if [[ $blacklist =~ $REPO ]]; then
         echo -e "\n$REPO is in blacklist, skipping"
     else
         case $REPO in
