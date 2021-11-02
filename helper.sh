@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Copyright (C) 2019-2021 alanndz <alanmahmud0@gmail.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 # Colors
 red=$'\e[1;31m'
 grn=$'\e[1;32m'
