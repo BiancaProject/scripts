@@ -186,8 +186,8 @@ while (( ${#} )); do
        "-t"|"--tag") shift; TAG=${1} ;;
        "-r"|"--remote") shift; REMOTE_NAME=${1} ;;
        "-b"|"--branch") shift; BRANCH=${1} ;;
-       "-m"|"--merge") shift; MERGE=true ;;
-       "-rf"|"--reset-failed") shift; RESET_FAILED=true ;;
+       "-m"|"--merge") MERGE=true ;;
+       "-rf"|"--reset-failed") RESET_FAILED=true ;;
        "-p"|"--push") PUSH=true ;;
   esac
   shift
