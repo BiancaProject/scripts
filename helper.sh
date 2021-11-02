@@ -195,7 +195,7 @@ done
 fi
 
 # ROM-specific constants
-BRANCH=${BRANCH:-11}
+BRANCH=${BRANCH:-12}
 REMOTE_NAME=${REMOTE_NAME:-dudu}
 XML="${XML:-snippets/bianca.xml}"
 MERGE="${MERGE:-false}"
