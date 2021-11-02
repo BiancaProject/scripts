@@ -14,8 +14,7 @@ arg=${1}
 echo $(pwd)
 
 # Blacklisted repos - don't try to merge
-blacklist="android \
-hardware/qcom/display \
+blacklist="hardware/qcom/display \
 hardware/qcom/media \
 hardware/qcom/audio \
 hardware/qcom/bt \
@@ -113,6 +112,7 @@ merge_only() {
         echo -e "\n$REPO is in blacklist, skipping"
     else
         case $REPO in
+            android) repo="manifest" ;;
             build/make) repo="build" ;;
             *) repo=$REPO ;;
         esac
