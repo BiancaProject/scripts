@@ -11,7 +11,6 @@ end=$'\e[0m'
 
 ROM_PATH=$(pwd)
 arg=${1}
-echo $(pwd)
 
 # Blacklisted repos - don't try to merge
 blacklist="hardware/qcom/display \
@@ -63,7 +62,7 @@ merge_rebase() {
         fi
 
         if wget -q --spider $repo_url; then
-           echo -e "$blu \nMerging $REPO $end"
+            echo -e "$blu \nMerging $REPO $end"
             cd $REPO
             reset_branch $REMOTE $BRANCH
             git fetch -q $repo_url $TAG &> /dev/null
@@ -228,8 +227,6 @@ elif [[ -n $LOS && -z $AOSP ]]; then
     SRC="los"
     SOURCE="https://github.com/LineageOS/android"
 fi
-
-echo $XML
 
 if [[ "$arg" == "rebase" ]]; then
   merge_rebase $SRC $SOURCE $REMOTE_NAME $BRANCH $TAG $XML $IREBASE
