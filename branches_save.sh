@@ -22,6 +22,7 @@ fi
 
 TOP="${PWD}"
 BRANCHLIST="${TOP}/branches.list"
+BLACKLIST=$(cat "${TOP}/scripts/blacklist")
 
 # Example repo status output:
 #project build/make/                             branch x
@@ -30,6 +31,9 @@ BRANCHLIST="${TOP}/branches.list"
 repo status | grep '^project ' | while read l; do
     set ${l}
     PROJECTPATH=$(echo ${2} | sed 's|/$||')
+    if [[ "${BLACKLIST}" =~ "${PROJECTPATH}" ]]; then
+        continue
+    fi
     BRANCH="${4}"
     echo "${PROJECTPATH} ${BRANCH}"
 done | sort > "${BRANCHLIST}"

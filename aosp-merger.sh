@@ -48,6 +48,7 @@ MERGEDREPOS="${TOP}/merged_repos.txt"
 MANIFEST="${TOP}/.repo/manifests/snippets/bianca.xml"
 BRANCH=$(git -C ${TOP}/.repo/manifests.git config --get branch.default.merge | sed 's#refs/heads/##g')
 STAGINGBRANCH="staging/${BRANCH}_${OPERATION}-${NEWTAG}"
+BLACKLIST=$(cat "${TOP}/scripts/blacklist")
  
 # Build list of Bianca Project forked repos
 PROJECTPATHS=$(grep "remote=\"bianca" "${MANIFEST}" | sed -n 's/.*path="\([^"]\+\)".*/\1/p')
@@ -76,6 +77,10 @@ repo abandon "${STAGINGBRANCH}"
  
 # Iterate over each forked project
 for PROJECTPATH in ${PROJECTPATHS}; do
+    if [[ "${BLACKLIST}" =~ "${PROJECTPATH}" ]]; then
+        continue
+    fi
+
     cd "${TOP}/${PROJECTPATH}"
     repo start "${STAGINGBRANCH}" .
     aospremote | grep -v "Remote 'aosp' created"
