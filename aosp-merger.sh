@@ -51,7 +51,7 @@ STAGINGBRANCH="staging/${BRANCH}_${OPERATION}-${NEWTAG}"
 BLACKLIST=$(cat "${TOP}/scripts/blacklist")
  
 # Build list of Bianca Project forked repos
-PROJECTPATHS=$(grep "remote=\"bianca" "${MANIFEST}" | sed -n 's/.*path="\([^"]\+\)".*/\1/p')
+PROJECTPATHS=$(grep "remote=\"dudu" "${MANIFEST}" | sed -n 's/.*path="\([^"]\+\)".*/\1/p')
  
 echo "#### Old tag = ${OLDTAG} Branch = ${BRANCH} Staging branch = ${STAGINGBRANCH} ####"
  
