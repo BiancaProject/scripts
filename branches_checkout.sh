@@ -42,6 +42,10 @@ BRANCH="${1}"
 TOP="${PWD}"
 BRANCHLIST="${TOP}/branches.list"
 
+if [[ ! -f "${BRANCHLIST}" ]]; then
+    BRANCHLIST="${TOP}/project.list"
+fi
+
 cat "${BRANCHLIST}" | while read l; do
     set ${l}
     PROJECTPATH="${1}"
