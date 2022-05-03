@@ -3,11 +3,13 @@ device/mediatek/sepolicy_vndr
 device/qcom/sepolicy
 device/qcom/sepolicy_vndr
 device/qcom/sepolicy-legacy-um
+packages/apps/FaceUnlockService
 hardware/bianca/interfaces
 hardware/qcom-caf/msm8996/audio
 hardware/qcom-caf/msm8996/display
 hardware/qcom-caf/msm8996/media
 official-devices
+packages/apps/FaceUnlockService
 packages/apps/SimpleDeviceConfig
 packages/apps/Reptools
 packages/apps/FaceUnlockService
@@ -24,3 +26,4 @@ vendor/qcom/opensource/commonsys/system/bt
 vendor/qcom/opensource/data-ipa-cfg-mgr
 vendor/qcom/opensource/dataservices
 scripts
+vendor/support
