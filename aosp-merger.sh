@@ -81,6 +81,10 @@ for PROJECTPATH in ${PROJECTPATHS}; do
         continue
     fi
 
+    if [[ ! -d "${PROJECTPATH}" ]]; then
+        continue
+    fi
+
     cd "${TOP}/${PROJECTPATH}"
     repo start "${STAGINGBRANCH}" .
     aospremote | grep -v "Remote 'aosp' created"
