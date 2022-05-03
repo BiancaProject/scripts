@@ -88,7 +88,9 @@ for PROJECTPATH in ${PROJECTPATHS}; do
     cd "${TOP}/${PROJECTPATH}"
     repo start "${STAGINGBRANCH}" .
     aospremote | grep -v "Remote 'aosp' created"
-    git fetch -q --tags aosp "${NEWTAG}"
+    if ! git fetch -q --tags aosp "${NEWTAG}"; then
+        continue
+    fi
  
     PROJECTOPERATION="${OPERATION}"
  
