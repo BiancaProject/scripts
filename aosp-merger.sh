@@ -58,6 +58,10 @@ echo "#### Old tag = ${OLDTAG} Branch = ${BRANCH} Staging branch = ${STAGINGBRAN
 # Make sure manifest and forked repos are in a consistent state
 echo "#### Verifying there are no uncommitted changes on Bianca Project forked AOSP projects ####"
 for PROJECTPATH in ${PROJECTPATHS} .repo/manifests; do
+    if [[ ! -d "${PROJECTPATH}" ]]; then
+        continue
+    fi
+
     cd "${TOP}/${PROJECTPATH}"
     if [[ -n "$(git status --porcelain)" ]]; then
         echo "Path ${PROJECTPATH} has uncommitted changes. Please fix."
@@ -86,6 +90,7 @@ for PROJECTPATH in ${PROJECTPATHS}; do
     fi
 
     cd "${TOP}/${PROJECTPATH}"
+
     repo start "${STAGINGBRANCH}" .
     aospremote | grep -v "Remote 'aosp' created"
     if ! git fetch -q --tags aosp "${NEWTAG}"; then
