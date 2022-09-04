@@ -31,9 +31,11 @@ SC="${TOP}/scripts"
 case "${ARG}" in
   merger)
     "${SC}/aosp-merger.sh" "${@:2}" ;;
+  rebase)
+    "${SC}/aosp-rebase.sh" "${@:2}" ;;
   save|branch)
     "${SC}/branches_${ARG}.sh" ;;
-  backup|rebase|restore|reset|checkout|push)
+  backup|restore|reset|checkout|push)
     "${SC}/branches_${ARG}.sh" "${@:2}" ;;
   list)
     "${SC}/project_${ARG}.sh" ;;
