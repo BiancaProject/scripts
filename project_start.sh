@@ -46,7 +46,8 @@ BRANCHLIST="${TOP}/branches.list"
 cat "${LIST}" | while read l; do
     set ${l}
     PROJECTPATH="${1}"
-    cd "${TOP}/${PROJECTPATH}"
+
+    if [ ! -d "${PROJECTPATH}" ]; then continue; fi
 
     repo start "${BRANCH}" "${PROJECTPATH}"
 
