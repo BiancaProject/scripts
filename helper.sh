@@ -33,6 +33,8 @@ case "${ARG}" in
     "${SC}/aosp-merger.sh" "${@:2}" ;;
   rebase)
     "${SC}/aosp-rebase.sh" "${@:2}" ;;
+  start)
+    "${SC}/project_start.sh" "${@:2}" ;;
   save|branch)
     "${SC}/branches_${ARG}.sh" ;;
   backup|restore|reset|checkout|push)
