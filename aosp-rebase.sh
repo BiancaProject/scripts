@@ -77,8 +77,6 @@ for PROJECTPATH in ${PROJECTPATHS}; do
        continue
     fi
 
-    echo "lewat"
-
     case $PROJECTPATH in
        build/make) repo_url="$AOSP/platform/build" ;;
        *) repo_url="$AOSP/platform/$PROJECTPATH" ;;
@@ -87,7 +85,7 @@ for PROJECTPATH in ${PROJECTPATHS}; do
     if wget -q --spider $repo_url; then
         echo -e "$blu \nRebasaing $PROJECTPATH $end"
         cd "${TOP}/${PROJECTPATH}"
-        git checkout "${BRANCH}"
+        git checkout "${BRANCH}" &> /dev/null
         git fetch -q $repo_url $TAG #&> /dev/null
         git branch -D "${BRANCH}-rebase-${TAG}" &> /dev/null
         git checkout -b "${BRANCH}-rebase-${TAG}" &> /dev/null
@@ -97,7 +95,7 @@ for PROJECTPATH in ${PROJECTPATHS}; do
                 echo "${grn}Rebase $PROJECTPATH succeeded $end"
             else
                 echo "$PROJECTPATH - unchanged"
-                git checkout "${BRANCH}"
+                git checkout "${BRANCH}" &> /dev/null
                 git branch -D "${BRANCH}-rebase-${TAG}" &> /dev/null
             fi
         else
