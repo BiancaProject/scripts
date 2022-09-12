@@ -68,8 +68,8 @@ reset_branch () {
 }
 
 for files in success failed; do
-    rm $files 2> /dev/null
-    touch $files
+    rm $TOP/$files 2> /dev/null
+    touch $TOP/$files
 done
 
 for PROJECTPATH in ${PROJECTPATHS}; do
