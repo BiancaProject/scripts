@@ -76,9 +76,8 @@ for PROJECTPATH in ${PROJECTPATHS}; do
     if [[ "${BLACKLIST}" =~ "${PROJECTPATH}" ]]; then
        continue
     fi
-    if [ ! -d "${PROJECTPATH}" ]; then
-       continue
-    fi
+
+    echo "lewat"
 
     case $PROJECTPATH in
        build/make) repo_url="$AOSP/platform/build" ;;
@@ -89,12 +88,12 @@ for PROJECTPATH in ${PROJECTPATHS}; do
         echo -e "$blu \nRebasaing $PROJECTPATH $end"
         cd "${TOP}/${PROJECTPATH}"
         git checkout "${BRANCH}"
-        git fetch -q $repo_url $TAG &> /dev/null
+        git fetch -q $repo_url $TAG #&> /dev/null
         git branch -D "${BRANCH}-rebase-${TAG}" &> /dev/null
         git checkout -b "${BRANCH}-rebase-${TAG}" &> /dev/null
         if git rebase FETCH_HEAD &> /dev/null; then
-            if [[ $(git rev-parse HEAD) != $(git rev-parse $REMOTE_NAME/$BRANCH) ]] && [[ $(git diff HEAD $REMOTE_NAME/$BRANCH) ]]; then
-                echo "$PROJECTPATH" >> $ROM_PATH/success
+            if [[ $(git rev-parse HEAD) != $(git rev-parse $REMOTE/$BRANCH) ]] && [[ $(git diff HEAD $REMOTE/$BRANCH) ]]; then
+                echo "$PROJECTPATH" >> $TOP/success
                 echo "${grn}Rebase $PROJECTPATH succeeded $end"
             else
                 echo "$PROJECTPATH - unchanged"
