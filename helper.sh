@@ -20,7 +20,7 @@ if [ ! -e "build/envsetup.sh" ]; then
 fi
 
 usage() {
-  echo "Usage ${0} <merger|save|backup|branch|rebase|restore|reset|checkout|push> <argument>"
+  echo "Usage ${0} <start|list|merger|save|backup|branch|rebase|restore|reset|checkout|push> <argument>"
   exit 1
 }
 
